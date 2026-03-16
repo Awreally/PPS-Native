@@ -80,7 +80,13 @@ function Timer() {
         value={inputMinutes}
         onChangeText={setInputMinutes}
         keyboardType="numeric"
-        onFocus={() => setIsFocused(true)}
+        onFocus={() => {
+          setIsFocused(true);
+          pauseTimer();
+          if (inputMinutes === String(duration / 60)) {
+            setInputMinutes("");
+          }
+        }}
         onBlur={() => setIsFocused(false)}
         onSubmitEditing={handleSetTimer}
         returnKeyType="done"
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     padding: 8,
     borderRadius: 8,
-    color: "fff",
+    color: "#fff",
   },
   inputFocused: {
     borderColor: "#0077ff",
